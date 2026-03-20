@@ -1,0 +1,358 @@
+/* --- Premium Google Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #f4f7f6; 
+  color: #1a1a1a;
+  overflow-x: hidden;
+}
+
+/* --- 1. Navbar: Full Width, Top Margin 0 --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  background: #ffffff;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.logo span { color: #0071e3; }
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.nav-link {
+  display: flex;
+  text-decoration: none;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  color: #100f0f;
+  font-weight: 800;
+  font-size: 14px; 
+  background-color: #e7f4fd; 
+  height: 30px;
+  width: 100px;
+  border-radius: 8px;
+}
+
+/* --- 2. Action Buttons (Navbar & Forms) --- */
+
+/* BLUE Button (+ Add Product) */
+.admin-btn {
+  text-decoration: none;
+  background: #0071e3 !important; 
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* RED Button (Logout) */
+.logout-btn {
+  background: #ff3b30 !important; 
+  color: white !important;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* --- 3. Main Container & Forms --- */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh; 
+  padding: 40px 20px;
+  width: 100%;
+}
+
+form {
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  border: 1px solid #eee;
+  text-align: center;
+}
+
+form h2 {
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+input, textarea {
+  width: 100%;
+  display: block;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border: 1.5px solid #f0f0f2;
+  border-radius: 14px;
+  font-size: 15px;
+  background: #fbfbfd;
+  outline: none;
+}
+
+input:focus {
+  border-color: #0071e3;
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+}
+
+/* --- 4. Product Grid: 4 for Windows, 2 for Phone --- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 25px;
+  width: 100%;
+  max-width: 1300px;
+  margin-top: 20px;
+  align-items: start; 
+}
+
+/* --- 5. Centered Product Card: Height Fix --- */
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  text-align: center;
+  height: fit-content; 
+}
+
+/* Card hover effect  */
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+} 
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card p {
+  font-size: 18px;
+  font-weight: 800;
+  color: #28a745; /* Price Green */
+  margin-bottom: 15px;
+}
+
+/* Pay Now Button (Green) */
+.green-btn {
+  background: #28a745 !important;
+  color: white !important;
+  border: none;
+  padding: 14px;
+  width: 100%;
+  max-width: 220px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* --- 6. QR Scanner Section (Inside Card) --- */
+.qr-container {
+  background: #ffffff;
+  border: 1px solid #f0f0f2;
+  padding: 20px;
+  border-radius: 18px;
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-image {
+  width: 130px !important;
+  height: 130px !important;
+  margin-bottom: 10px;
+}
+
+.upi-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Admin Controls (Inside Scanner Section) */
+.admin-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.edit-mini-btn, .delete-mini-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-mini-btn { background: #f1f3f5 !important; color: #495057 !important; }
+.delete-mini-btn { background: #fff5f5 !important; color: #ff3b30 !important; }
+
+/* --- Responsive Media Queries --- */
+
+
+
+@media (max-width: 650px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 Cards for Phone */
+    gap: 12px;
+    padding: 10px;
+  }  
+  .card img { height: 150px; }
+  .navbar { padding: 10px 4%; }
+  .logo { font-size: 18px; }
+  .nav-link { display: none; } /* Mobile par home hide kiya space ke liye */
+}   
+
+
+/* footer */ 
+/* --- Final Premium Footer Styling --- */
+.footer {
+    background: #1a1a1a; /* Dark Charcoal Grey */
+    color: #ffffff;
+    padding: 60px 10% 20px;
+    margin-top: 50px;
+    width: 100%;
+    border-top: 4px solid #0071e3; /* Top par patli blue line styling ke liye */
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Footer Sections */
+.footer-section h3 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.footer-section h3 span {
+    color: #0071e3; /* Business word blue dikhega */
+}
+
+.footer-section h4 {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: #f1f3f5;
+}
+
+.footer-section p {
+    color: #adb5bd;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Quick Links Styling */
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+    color: #adb5bd;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #0071e3;
+    padding-left: 8px; /* Hover par halka sa move hoga */
+}
+
+/* Footer Bottom Section */
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 25px;
+    border-top: 1px solid #333;
+    color: #666;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Responsive Footer for Mobile */
+@media (max-width: 768px) {
+    .footer {
+        padding: 40px 5% 20px;
+        text-align: center;
+    }
+
+    .footer-content {
+        gap: 30px;
+    }
+
+    .footer-section ul li a:hover {
+        padding-left: 0; /* Mobile par moving effect hata diya */
+    }
+}
