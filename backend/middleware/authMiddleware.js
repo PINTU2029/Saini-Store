@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User'); // User model zaroori hai
+const User = require('../models/User'); 
 
 const auth = async (req, res, next) => {
     const token = req.header('Authorization')?.split(' ')[1]; // Bearer <token>
@@ -11,15 +11,14 @@ const auth = async (req, res, next) => {
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         
-        // YE LINE SABSE ZAROORI HAI: 
-        // Database se user ka data nikalna taaki 'isAdmin' mil sake
+        
         const user = await User.findById(decoded.id).select('-password');
         
         if (!user) {
             return res.status(401).json({ msg: "User nahi mila" });
         }
 
-        req.user = user; // Ab req.user mein 'isAdmin' ki value aa gayi hai
+        req.user = user;
         next();
     } catch (err) {
         res.status(401).json({ msg: "Token is not valid" });

@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
         required: [true, "Please enter a password"],
         minlength: 6 
     },
-    // --- Naye Fields Delivery ke liye ---
+  
     phone: {
         type: String,
         required: [true, "Please enter your 10-digit phone number"],

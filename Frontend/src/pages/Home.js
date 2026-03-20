@@ -6,7 +6,7 @@ const Home = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // 1. Products ko load karne ka function (Ise baar-baar use karenge)
+    
     const getProducts = async () => {
         try {
             const { data } = await fetchProducts();
@@ -18,7 +18,7 @@ const Home = () => {
         }
     };
 
-    // 2. Page khulte hi products mangwao
+  
     useEffect(() => {
         getProducts();
     }, []);
@@ -37,7 +37,7 @@ const Home = () => {
                         <ProductCard 
                             key={product._id} 
                             product={product} 
-                            refreshProducts={getProducts} // 3. Ye function Card ko bheja taaki delete/edit ke baad refresh ho sake
+                            refreshProducts={getProducts} 
                         />
                     ))
                 ) : (

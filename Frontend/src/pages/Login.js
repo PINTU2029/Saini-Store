@@ -11,13 +11,13 @@ const handleSubmit = async (e) => {
     try {
         const { data } = await loginUser(formData);
         
-        // 1. Token save karein
+        // 1. Token save 
         localStorage.setItem('token', data.token); 
         
-        // 2. User ID save karein
+        // 2. User ID save 
         localStorage.setItem('userId', data.user._id || data.user.id);
 
-        // 3. SABSE ZAROORI: Poora user object save karein (isAdmin isi mein hai)
+        // 3.  user object save karein (isAdmin )
         localStorage.setItem('user', JSON.stringify(data.user)); 
 
         alert("✅ Login Successful!");
@@ -29,7 +29,7 @@ const handleSubmit = async (e) => {
 };
 
     return (
-        <div className="main-container"> {/* Isse form center hoga */}
+        <div className="main-container"> {}
             <form onSubmit={handleSubmit} className="auth-form">
                 <h2>Login to Your Account</h2>
                 <input 

@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 // ==========================
 exports.register = async (req, res) => {
     try {
-        console.log("📥 Incoming Registration Data:", req.body);
+        console.log("Incoming Registration Data:", req.body);
 
         const { name, email, password, phone, address } = req.body;
 
@@ -25,7 +25,7 @@ exports.register = async (req, res) => {
         user.password = await bcrypt.hash(password, salt);
 
         await user.save();
-        console.log("✅ User Registered Successfully!");
+        console.log(" User Registered Successfully!");
 
         const payload = { user: { id: user.id } };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' });
@@ -33,7 +33,7 @@ exports.register = async (req, res) => {
         res.status(201).json({ token, user: { id: user.id, name: user.name } });
 
     } catch (err) {
-        console.error("❌ Registration Error:", err.message);
+        console.error(" Registration Error:", err.message);
         if (!res.headersSent) {
             return res.status(500).json({ msg: "Server Error: " + err.message });
         }
@@ -66,7 +66,7 @@ exports.login = async (req, res) => {
         const payload = { user: { id: user.id } };
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' });
 
-        console.log("✅ User Logged In Successfully!");
+        console.log("User Logged In Successfully!");
 
         res.json({ 
             token, 
@@ -74,7 +74,7 @@ exports.login = async (req, res) => {
         });
 
     } catch (err) {
-        console.error("❌ Login Error:", err.message);
+        console.error(" Login Error:", err.message);
         if (!res.headersSent) {
             return res.status(500).json({ msg: "Server Error: Login fail ho gaya" });
         }

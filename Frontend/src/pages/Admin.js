@@ -25,7 +25,7 @@ const Admin = () => {
         e.preventDefault();
         if (!product.image) return alert("Kripya ek photo select karein!");
 
-        // --- FIXED: Token nikalo aur Port check karo ---
+       
         const token = localStorage.getItem('token'); 
         if (!token) {
             alert("Pehle Login karein! Aap admin nahi hain.");
@@ -33,10 +33,10 @@ const Admin = () => {
         }
 
         try {
-            // Port 5000 use kiya hai kyunki aapka backend wahin hai
+            
             await axios.post('http://localhost:5000/api/products/add', product, {
                 headers: {
-                    'Authorization': `Bearer ${token}` // YE LINE SABSE ZAROORI HAI
+                    'Authorization': `Bearer ${token}` 
                 }
             });
             

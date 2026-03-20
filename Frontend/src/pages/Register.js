@@ -13,18 +13,17 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    // ERROR FIX: Ye function sahi se data map karega
     const handleChange = (e) => {
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value // 'name' attribute se value map hogi
+            [e.target.name]: e.target.value 
         });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        // Browser console (F12) mein check karein ki data hai ya nahi
+        
         console.log("Form se nikalne wala data:", formData);
 
         try {
@@ -44,7 +43,7 @@ const Register = () => {
                 
                 <input 
                     type="text" 
-                    name="name" // Backend model se match hona chahiye
+                    name="name"
                     placeholder="Full Name" 
                     value={formData.name}
                     onChange={handleChange} 
@@ -62,7 +61,7 @@ const Register = () => {
 
                 <input 
                     type="tel" 
-                    name="phone" // ZAROORI: 'phone' hi likhein
+                    name="phone" 
                     placeholder="10-Digit Phone Number" 
                     pattern="[0-9]{10}"
                     value={formData.phone}
@@ -71,7 +70,7 @@ const Register = () => {
                 />
 
                 <textarea 
-                    name="address" // ZAROORI: 'address' hi likhein
+                    name="address" 
                     placeholder="Full Delivery Address" 
                     rows="3"
                     style={{ width: '100%', padding: '15px', borderRadius: '14px', marginBottom: '20px' }}

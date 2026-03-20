@@ -7,12 +7,12 @@ const ProductCard = ({ product, refreshProducts }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editData, setEditData] = useState({ name: product.name, price: product.price });
 
-    // Login data nikalo
+    
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user'); 
     const user = userData ? JSON.parse(userData) : null;
     
-    // Check karo: Kya user login hai AUR kya wo Admin hai?
+    
     const isAdmin = user && user.isAdmin === true; 
 
     const handleOrderNotify = async () => {
@@ -22,7 +22,7 @@ const ProductCard = ({ product, refreshProducts }) => {
         }
 
         try {
-            // FIXED: Port 5001 use kiya hai
+            // FIXED: Port 5000 
             await axios.post('http://localhost:5000/api/order-notify', {
                 productName: product.name,
                 productPrice: product.price
@@ -38,7 +38,7 @@ const ProductCard = ({ product, refreshProducts }) => {
     const handleDelete = async () => {
         if (window.confirm("Bhai, kya sach mein ye product delete karna hai?")) {
             try {
-                // FIXED: Port 5001 use kiya hai
+                
                 await axios.delete(`http://localhost:5000/api/products/${product._id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
@@ -50,7 +50,6 @@ const ProductCard = ({ product, refreshProducts }) => {
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            // FIXED: Port 5001 kiya hai
             await axios.put(`http://localhost:5000/api/products/${product._id}`, editData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -59,7 +58,7 @@ const ProductCard = ({ product, refreshProducts }) => {
         } catch (err) { alert("Update fail!"); }
     };
 
-    // --- Edit Mode wala Form (No Change Here) ---
+    
     if (isEditing) {
         return (
             <div className="card">
@@ -74,7 +73,7 @@ const ProductCard = ({ product, refreshProducts }) => {
         );
     }
 
-    // --- Normal Mode वाला Card (Fixed to hide buttons inside QR) ---
+    
     return (
         <div className="card">
             <img src={product.image} alt={product.name} />
@@ -93,7 +92,7 @@ const ProductCard = ({ product, refreshProducts }) => {
                     {showQR ? 'Close' : 'Pay Now'}
                 </button>
 
-                {/* --- QR Code aur Admin Buttons Window (Hidden initially) --- */}
+                {/* --- QR Code and Admin Buttons Window (Hidden initially) --- */}
                 {showQR && (
                     <div className="qr-container" style={{ textAlign: 'center' }}>
                         

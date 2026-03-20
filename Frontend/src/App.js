@@ -19,10 +19,10 @@ function App() {
     <Router>
       <div className="app-container" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         
-        {/* 1. Navbar hamesha top par rahega */}
+        {}
         <Navbar />
 
-        {/* 2. Main Content: flex: 1 se footer hamesha niche rahega */}
+        {}
         <main style={{ flex: '1' }}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -37,7 +37,7 @@ function App() {
           </Routes>
         </main>
 
-        {/* 3. Footer hamesha bottom par rahega */}
+        {}
         <Footer />
 
       </div>

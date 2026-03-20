@@ -9,7 +9,7 @@ const Navbar = () => {
         localStorage.removeItem('token');
         alert("Logged Out Successfully!");
         navigate('/login');
-        window.location.reload(); // Navbar ke buttons update karne ke liye
+        window.location.reload(); 
     };
 
     return (

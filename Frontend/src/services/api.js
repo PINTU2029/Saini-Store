@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// Backend Port 5001 pe shift kar diya hai connection refusal se bachne ke liye
+
 const API = axios.create({ 
     baseURL: 'http://localhost:5000/api',
     headers: {

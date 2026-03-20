@@ -9,20 +9,21 @@ router.post('/register', async (req, res) => {
     try {
         const { name, email, password, phone, address } = req.body;
 
-        // Check agar fields missing hain
+        
         if (!name || !email || !password || !phone || !address) {
             return res.status(400).json({ msg: "All fields (including phone & address) are required" });
         }
 
-        // Check agar user pehle se hai
+        
         let user = await User.findOne({ email });
         if (user) return res.status(400).json({ msg: "User already exists" });
 
-        // Password hash karna
+        
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-
-        // Naya User create karna (Sahi Fields ke saath)
+    
+    
+    
         const newUser = new User({ 
             name, 
             email, 
@@ -60,7 +61,7 @@ router.post('/login', async (req, res) => {
                 id: user._id, 
                 name: user.name, 
                 email: user.email,
-                isAdmin: user.isAdmin // <--- YE LINE DALNA SABSE ZAROORI HAI
+                isAdmin: user.isAdmin 
             } 
         });
 

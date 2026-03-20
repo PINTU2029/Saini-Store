@@ -24,7 +24,7 @@ const productSchema = new mongoose.Schema({
     },
     upiId: { 
         type: String, 
-        default: "your-vpa@upi", // Aapka default UPI ID payment ke liye
+        default: "your-vpa@upi", 
         required: true
     },
     inStock: { 
