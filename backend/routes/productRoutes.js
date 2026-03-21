@@ -1,23 +1,34 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
-
-
 const auth = require('../middleware/authMiddleware'); 
 const admin = require('../middleware/adminMiddleware'); 
 
-
+// 1. ZAROORI: Iske bina Home page par products nahi dikhenge
 router.get('/', async (req, res) => {
     try {
-        const products = await Product.find();
+        const products = await Product.find({});
         res.json(products);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
 });
 
+// 2. Single product (Isse rehne do, koi nuksan nahi hai)
+router.get('/:id', async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id);
+        if (product) {
+            res.json(product);
+        } else {
+            res.status(404).json({ message: "Product not found" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
-// Rasta: auth (Login?) -> admin (Power?) -> logic
+// 3. Add Product (Admin)
 router.post('/add', auth, admin, async (req, res) => {
     try {
         const newProduct = new Product(req.body);
@@ -28,21 +39,17 @@ router.post('/add', auth, admin, async (req, res) => {
     }
 });
 
-
+// 4. Update Product
 router.put('/:id', auth, admin, async (req, res) => {
     try {
-        const updatedProduct = await Product.findByIdAndUpdate(
-            req.params.id, 
-            req.body, 
-            { new: true }
-        );
+        const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.json(updatedProduct);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
-
+// 5. Delete Product
 router.delete('/:id', auth, admin, async (req, res) => {
     try {
         await Product.findByIdAndDelete(req.params.id);

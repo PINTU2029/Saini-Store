@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../services/api'; // Is line ko add kiya hai (Check path)
 import { useNavigate } from 'react-router-dom';
 
 const Admin = () => {
@@ -8,9 +8,9 @@ const Admin = () => {
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
-        // 1MB check
-        if (file && file.size > 1048576) { 
-            alert("Photo badi hai! 1MB se choti photo chunein.");
+        // 5MB check
+        if (file && file.size > 5242880) { 
+            alert("Photo badi hai! 5MB se choti photo chunein.");
             e.target.value = null;
             return;
         }
@@ -25,7 +25,6 @@ const Admin = () => {
         e.preventDefault();
         if (!product.image) return alert("Kripya ek photo select karein!");
 
-       
         const token = localStorage.getItem('token'); 
         if (!token) {
             alert("Pehle Login karein! Aap admin nahi hain.");
@@ -33,17 +32,14 @@ const Admin = () => {
         }
 
         try {
-            
-            await axios.post('http://localhost:5000/api/products/add', product, {
-                headers: {
-                    'Authorization': `Bearer ${token}` 
-                }
-            });
+            // ✅ LOCALHOST HATA DIYA HAI - Ab hamara 'API' (Render) link chalega
+            // Headers ki chinta mat karo, API interceptor ise sambhaal lega
+            await API.post('/products/add', product); 
             
             alert("✅ Product Successfully Add ho gaya!");
             navigate('/');
         } catch (err) {
-            console.error(err.response?.data);
+            console.error("Upload Error:", err.response?.data);
             alert(err.response?.data?.msg || "Error: Admin check fail ho gaya ya server band hai.");
         }
     };
