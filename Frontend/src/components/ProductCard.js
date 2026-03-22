@@ -14,23 +14,31 @@ const ProductCard = ({ product, refreshProducts }) => {
     const isAdmin = user && user.isAdmin === true; 
 
     // 1. ORDER NOTIFY FIX
-    const handleOrderNotify = async () => {
-        if (!token) {
-            alert("Order karne ke liye please pehle Login karein!");
-            return;
-        }
+const handleOrderNotify = async () => {
+    if (!token) {
+        alert("Order karne ke liye please pehle Login karein!");
+        return;
+    }
 
-        try {
-            
-            await API.post('/order-notify', {
-                productName: product.name,
-                productPrice: product.price
-            });
-            console.log("Admin notified via email!");
-        } catch (err) {
-            console.error("Order notification failed:", err);
-        }
-    };
+    try {
+        // ✅ Customer ki details localStorage se uthao
+        const userData = JSON.parse(localStorage.getItem('user'));
+
+        await API.post('/order-notify', {
+            productName: product.name,
+            productPrice: product.price,
+            // ✅ Ye naya data bhejna zaroori hai
+            customerName: userData.name,
+            customerEmail: userData.email,
+            customerAddress: userData.address || "Address not provided", 
+            customerPhone: userData.phone || "No contact info"
+        });
+        
+        alert("✅ Order notification sent to Admin!");
+    } catch (err) {
+        console.error("Notification failed:", err);
+    }
+};
 
     // 2. DELETE FUNCTION FIX
     const handleDelete = async () => {
