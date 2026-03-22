@@ -15,7 +15,7 @@ body {
   overflow-x: hidden;
 }
 
-/* --- 1. Navbar: Full Width, Top Margin 0 --- */
+/* --- 1. Desktop Design (Laptop ke liye) --- */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -33,6 +33,7 @@ body {
   font-size: 22px;
   font-weight: 800;
   letter-spacing: -1px;
+  color: #100f0f;
 }
 
 .logo span { color: #0071e3; }
@@ -43,43 +44,61 @@ body {
   align-items: center;
 }
 
-.nav-link {
+/* Common style for all links/buttons */
+.nav-link, .admin-btn, .logout-btn {
   display: flex;
   text-decoration: none;
   justify-content: center;
-  text-align: center;
   align-items: center;
-  color: #100f0f;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 14px; 
-  background-color: #e7f4fd; 
-  height: 30px;
-  width: 100px;
   border-radius: 8px;
+  height: 35px;
+  padding: 0 15px;
+  cursor: pointer;
 }
 
-/* --- 2. Action Buttons (Navbar & Forms) --- */
+.nav-link {
+  color: #100f0f;
+  background-color: #e7f4fd; 
+}
 
-/* BLUE Button (+ Add Product) */
 .admin-btn {
-  text-decoration: none;
   background: #0071e3 !important; 
   color: white !important;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 14px;
 }
 
-/* RED Button (Logout) */
 .logout-btn {
   background: #ff3b30 !important; 
   color: white !important;
   border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-weight: 700;
-  cursor: pointer;
+}
+
+/* --- ✅ 2. Mobile View Fix (Phones ke liye) --- */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column !important; /* Logo upar, links neeche */
+        padding: 15px 10px !important;
+        height: auto !important;
+    }
+
+    .nav-links {
+        display: flex !important; 
+        flex-direction: row !important; /* Ek line mein links */
+        flex-wrap: wrap; /* Jagah kam ho toh doosri line mein jayein */
+        justify-content: center !important;
+        gap: 10px !important;
+        margin-top: 15px !important;
+        width: 100% !important;
+    }
+
+    /* Mobile par buttons ka size thoda chota */
+    .nav-link, .admin-btn, .logout-btn {
+        font-size: 12px !important;
+        height: 30px !important;
+        padding: 0 10px !important;
+        width: auto !important; /* Width fix mat rakho mobile par */
+    }
 }
 
 /* --- 3. Main Container & Forms --- */
@@ -360,32 +379,3 @@ input:focus {
 
 
 
-/* Mobile View Fix */
-@media screen and (max-width: 768px) {
-    .navbar {
-        display: flex !important;
-        flex-direction: column !important; /* Logo upar, Links niche */
-        height: auto !important;
-        padding: 15px 0 !important;
-        background-color: #ffffff; /* Taaki links saaf dikhein */
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .nav-links {
-        display: flex !important; /* Forcefully links ko dikhao */
-        flex-direction: row !important; /* Links ek line mein rahein */
-        justify-content: center !important;
-        gap: 15px !important;
-        margin-top: 10px !important;
-        width: 100% !important;
-        list-style: none;
-        padding: 0;
-    }
-
-    .nav-links li a {
-        font-size: 14px !important;
-        color: #007bff !important; /* Blue color taaki white background par dikhe */
-        font-weight: 600;
-        text-decoration: none;
-    }
-}
