@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import API from '../services/api'; //  API import 
 import myStaticQR from '../assets/my_qr.png'; 
 
 const ProductCard = ({ product, refreshProducts }) => {
@@ -7,14 +7,13 @@ const ProductCard = ({ product, refreshProducts }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editData, setEditData] = useState({ name: product.name, price: product.price });
 
-    
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user'); 
     const user = userData ? JSON.parse(userData) : null;
     
-    
     const isAdmin = user && user.isAdmin === true; 
 
+    // 1. ORDER NOTIFY FIX
     const handleOrderNotify = async () => {
         if (!token) {
             alert("Order karne ke liye please pehle Login karein!");
@@ -22,12 +21,10 @@ const ProductCard = ({ product, refreshProducts }) => {
         }
 
         try {
-            // FIXED: Port 5000 
-            await axios.post('http://localhost:5000/api/order-notify', {
+            
+            await API.post('/order-notify', {
                 productName: product.name,
                 productPrice: product.price
-            }, {
-                headers: { Authorization: `Bearer ${token}` }
             });
             console.log("Admin notified via email!");
         } catch (err) {
@@ -35,27 +32,34 @@ const ProductCard = ({ product, refreshProducts }) => {
         }
     };
 
+    // 2. DELETE FUNCTION FIX
     const handleDelete = async () => {
         if (window.confirm("Bhai, kya sach mein ye product delete karna hai?")) {
             try {
                 
-                await axios.delete(`http://localhost:5000/api/products/${product._id}`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
+                await API.delete(`/products/${product._id}`);
+                alert("✅ Product delete ho gaya!");
                 refreshProducts(); 
-            } catch (err) { alert("Delete fail! Shayad aap admin nahi hain."); }
+            } catch (err) { 
+                console.error("Delete Error:", err.response?.data);
+                alert("Delete fail! Shayad aap admin nahi hain."); 
+            }
         }
     };
 
+    // 3.  UPDATE FUNCTION FIX
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:5000/api/products/${product._id}`, editData, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
+            
+            await API.put(`/products/${product._id}`, editData);
+            alert("✅ Product update ho gaya!");
             setIsEditing(false);
             refreshProducts();
-        } catch (err) { alert("Update fail!"); }
+        } catch (err) { 
+            console.error("Update Error:", err.response?.data);
+            alert("Update fail!"); 
+        }
     };
 
     
