@@ -356,3 +356,38 @@ input:focus {
         padding-left: 0; /* Mobile par moving effect hata diya */
     }
 }
+
+
+
+
+/* Mobile View Fix (Jab screen 768px se choti ho) */
+@media screen and (max-width: 768px) {
+    .navbar {
+        display: flex;
+        flex-direction: column; /* Saini-Store upar, links niche */
+        align-items: center;
+        padding: 10px 0;
+        height: auto; /* Height fix mat rakhna, auto kar do */
+    }
+
+    .navbar-logo {
+        font-size: 20px;
+        margin-bottom: 8px; /* Logo aur links ke beech gap */
+    }
+
+    .nav-links {
+        display: flex !important; /* Forcefully dikhane ke liye */
+        flex-direction: row; /* Links ko ek line mein rakho */
+        justify-content: center;
+        gap: 12px; /* Links ke beech ki duri */
+        width: 100%;
+        list-style: none;
+        padding: 0;
+    }
+
+    .nav-links a {
+        font-size: 14px; /* Mobile ke liye font thoda chota */
+        text-decoration: none;
+        color: white; /* Aapka jo bhi color ho */
+    }
+}
