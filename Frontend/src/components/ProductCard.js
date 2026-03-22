@@ -15,30 +15,33 @@ const ProductCard = ({ product, refreshProducts }) => {
 
     // 1. ORDER NOTIFY FIX
 const handleOrderNotify = async () => {
-    if (!token) {
-        alert("Order karne ke liye please pehle Login karein!");
-        return;
-    }
+        if (!token) {
+            alert("Order karne ke liye please pehle Login karein!");
+            return;
+        }
 
-    try {
-        // ✅ Customer ki details localStorage se uthao
-        const userData = JSON.parse(localStorage.getItem('user'));
+        try {
+            // ✅ LocalStorage se login user ki poori detail
+            const userData = JSON.parse(localStorage.getItem('user'));
 
-        await API.post('/order-notify', {
-            productName: product.name,
-            productPrice: product.price,
-            // ✅ Ye naya data bhejna zaroori hai
-            customerName: userData.name,
-            customerEmail: userData.email,
-            customerAddress: userData.address || "Address not provided", 
-            customerPhone: userData.phone || "No contact info"
-        });
-        
-        alert("✅ Order notification sent to Admin!");
-    } catch (err) {
-        console.error("Notification failed:", err);
-    }
-};
+            // Ismein hum product ke saath-saath customer ki details bhi bhej rahe hain
+            await API.post('/order-notify', {
+                productName: product.name,
+                productPrice: product.price,
+                customerName: userData.name || "N/A",
+                customerEmail: userData.email || "N/A",
+                // Agar aapke user model mein address/phone hai toh wo bhi jayega
+                customerAddress: userData.address || "Address not updated in profile",
+                customerPhone: userData.phone || "Phone not updated"
+            });
+
+            alert("✅ Order Details Admin ko bhej di gayi hain!");
+            console.log("Admin notified with full details!");
+        } catch (err) {
+            console.error("Order notification failed:", err);
+            alert("Notification fail ho gayi!");
+        }
+    };
 
     // 2. DELETE FUNCTION FIX
     const handleDelete = async () => {
