@@ -360,34 +360,24 @@ input:focus {
 
 
 
-/* Mobile View Fix (Jab screen 768px se choti ho) */
-@media screen and (max-width: 768px) {
+/* Mobile Screens (Phones) */
+@media (max-width: 768px) {
     .navbar {
-        display: flex;
-        flex-direction: column; /* Saini-Store upar, links niche */
-        align-items: center;
-        padding: 10px 0;
-        height: auto; /* Height fix mat rakhna, auto kar do */
-    }
-
-    .navbar-logo {
-        font-size: 20px;
-        margin-bottom: 8px; /* Logo aur links ke beech gap */
+        flex-direction: column; /* Items ko upar-neeche karne ke liye */
+        padding: 10px;
     }
 
     .nav-links {
-        display: flex !important; /* Forcefully dikhane ke liye */
-        flex-direction: row; /* Links ko ek line mein rakho */
+        display: flex; /* Agar ye none tha, toh ise flex karo */
+        flex-direction: row; /* Horizontal dikhane ke liye */
+        gap: 15px;
         justify-content: center;
-        gap: 12px; /* Links ke beech ki duri */
         width: 100%;
-        list-style: none;
-        padding: 0;
+        margin-top: 10px;
+        font-size: 14px; /* Mobile ke liye thoda chota size */
     }
 
     .nav-links a {
-        font-size: 14px; /* Mobile ke liye font thoda chota */
-        text-decoration: none;
-        color: white; /* Aapka jo bhi color ho */
+        padding: 5px 10px;
     }
 }
