@@ -360,24 +360,32 @@ input:focus {
 
 
 
-/* Mobile Screens (Phones) */
-@media (max-width: 768px) {
+/* Mobile View Fix */
+@media screen and (max-width: 768px) {
     .navbar {
-        flex-direction: column; /* Items ko upar-neeche karne ke liye */
-        padding: 10px;
+        display: flex !important;
+        flex-direction: column !important; /* Logo upar, Links niche */
+        height: auto !important;
+        padding: 15px 0 !important;
+        background-color: #ffffff; /* Taaki links saaf dikhein */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     .nav-links {
-        display: flex; /* Agar ye none tha, toh ise flex karo */
-        flex-direction: row; /* Horizontal dikhane ke liye */
-        gap: 15px;
-        justify-content: center;
-        width: 100%;
-        margin-top: 10px;
-        font-size: 14px; /* Mobile ke liye thoda chota size */
+        display: flex !important; /* Forcefully links ko dikhao */
+        flex-direction: row !important; /* Links ek line mein rahein */
+        justify-content: center !important;
+        gap: 15px !important;
+        margin-top: 10px !important;
+        width: 100% !important;
+        list-style: none;
+        padding: 0;
     }
 
-    .nav-links a {
-        padding: 5px 10px;
+    .nav-links li a {
+        font-size: 14px !important;
+        color: #007bff !important; /* Blue color taaki white background par dikhe */
+        font-weight: 600;
+        text-decoration: none;
     }
 }
