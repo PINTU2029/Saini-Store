@@ -396,9 +396,13 @@ input:focus {
     background: #ffffff;
     border-color: #0071e3;
     box-shadow: 0 0 0 4px rgba(0,113,227,0.1);
+    display: flex;
+    align-items: center;
 }
 
 .search-form input {
+    display: flex;
+    align-self: center;
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
