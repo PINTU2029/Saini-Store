@@ -29,7 +29,7 @@ const handleOrderNotify = async () => {
         });
 
         alert("✅ Order Details Admin ko bhej di gayi hain!");
-        console.log("21 March wala magic wapas aa gaya!");
+        console.log("Notification Send kiya Gya!");
     } catch (err) {
         console.error("Order notification failed:", err);
         alert("Notification fail ho gayi!");
