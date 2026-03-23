@@ -382,56 +382,43 @@ input:focus {
 /* --- Search Form Styling --- */
 .search-form {
     display: flex;
-    align-items: center; /* Container items ko center rakhega */
-    background: #f5f5f7;
-    border-radius: 50px;
-    height: 38px; /* Fixed height for the whole bar */
-    width: 35%;
+    align-items: center;
+    background: #f5f5f7; /* Light grey background */
+    border-radius: 50px; /* Capsule shape */
     padding: 2px 5px;
-    overflow: hidden;
-    border: 1px solid #d1d1d6;
+    width: 35%; /* Desktop par width */
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    height: 30px;
+}
+
+.search-form:focus-within {
+    background: #ffffff;
+    border-color: #0071e3;
+    box-shadow: 0 0 0 4px rgba(0,113,227,0.1);
 }
 
 .search-form input {
-    /* Bootstrap ki default cheezein hatao */
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
-    outline: none !important;
-    
-    display: block !important;
-    width: 100% !important;
-    
-    /* 1. Height ko container ke barabar rakho */
-    height: 34px !important; 
-    
-    /* 2. Text ko center karne ka asli tarika */
-    padding: 0 12px !important; /* Top-bottom padding 0 rakho */
-    line-height: 34px !important; /* Height ke barabar line-height = Vertical Center */
-    
+    height: 36px !important; 
+    padding: 10px 15px !important;
+    line-height: 10px !important; 
     font-size: 14px !important;
-    color: #1d1d1f;
-}
-
-/* Chrome/Safari mein extra padding hatane ke liye */
-.search-form input::-webkit-search-decoration,
-.search-form input::-webkit-search-cancel-button,
-.search-form input::-webkit-search-results-button,
-.search-form input::-webkit-search-results-decoration {
-    display: none;
+    vertical-align: middle !important; 
+    outline: none;
 }
 
 .search-btn {
-    height: 30px !important; /* Input se thoda chota */
-    padding: 0 15px !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px !important;
-    font-weight: 600 !important;
+    background: #0071e3 !important;
+    color: white !important;
+    border: none !important;
     border-radius: 50px !important;
-    margin-left: 5px;
-    flex-shrink: 0; /* Button dabe nahi */
+    padding: 6px 20px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    transition: transform 0.2s active;
 }
 
 .search-btn:hover {
