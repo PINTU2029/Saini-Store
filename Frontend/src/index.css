@@ -379,20 +379,64 @@ input:focus {
 
 
 
+/* --- Search Form Styling --- */
 .search-form {
-    width: 40% !important; /* Desktop par width */
+    display: flex;
+    align-items: center;
+    background: #f5f5f7; /* Light grey background */
+    border-radius: 50px; /* Capsule shape */
+    padding: 2px 5px;
+    width: 35%; /* Desktop par width */
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.search-form:focus-within {
+    background: #ffffff;
+    border-color: #0071e3;
+    box-shadow: 0 0 0 4px rgba(0,113,227,0.1);
+}
+
+.search-form input {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 8px 15px;
+    font-size: 14px;
+    width: 100%;
 }
 
 .search-btn {
-    border-radius: 20px !important;
-    font-weight: 700 !important;
+    background: #0071e3 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 6px 20px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    transition: transform 0.2s active;
 }
 
+.search-btn:hover {
+    background: #005bb5 !important;
+}
+
+/* --- Mobile View Adjustments --- */
 @media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column !important;
+        gap: 10px;
+    }
+    
     .search-form {
-        width: 90% !important; /* Mobile par poori width */
-        margin: 10px 0 !important;
+        width: 90% !important; /* Mobile par bada dikhe */
+        order: 2; /* Logo ke niche search bar */
+    }
+    
+    .nav-links {
+        order: 3; /* Sabse niche links */
+        width: 100%;
+        justify-content: center;
     }
 }
-
 
