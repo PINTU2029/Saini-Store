@@ -38,33 +38,32 @@ const authMiddleware = require('./middleware/authMiddleware');
 // --- 4. Routes ---
 
 // Order Notification Route
-app.post('/api/order-notify',  async (req, res) => {
+app.post('/api/order-notify', async (req, res) => {
     try {
-       
-        const { productName, productPrice, customerName, customerAddress, customerPhone } = req.body;
+        // Frontend se jo bhi aa raha hai sab yahan pakad lo
+        const { productName, productPrice, customerName, customerAddress, customerPhone, customerEmail } = req.body;
 
         const mailOptions = {
-            from: `"Saini Store Order" <${process.env.EMAIL_USER}>`,
-            to: process.env.EMAIL_USER, 
-            subject: `New Order: ${productName}`,
+            from: process.env.EMAIL_USER,
+            to: process.env.EMAIL_USER,
+            subject: `🔥 Naya Order: ${productName}`,
             html: `
-                <div style="font-family: Arial, sans-serif; border: 2px solid #28a745; padding: 20px; border-radius: 15px;">
-                    <h2 style="color: #28a745;">Naya Order Mila Hai!</h2>
-                    <p><strong>Product:</strong> ${productName} | <strong>Price:</strong> ₹${productPrice}</p>
-                    <hr />
-                    <h3>Customer Details (From Frontend):</h3>
+                <div style="font-family: Arial; border: 1px solid #ddd; padding: 20px;">
+                    <h2>Naya Order Details</h2>
+                    <p><strong>Product:</strong> ${productName} (₹${productPrice})</p>
+                    <hr/>
                     <p><strong>Name:</strong> ${customerName}</p>
+                    <p><strong>Email:</strong> ${customerEmail || 'N/A'}</p>
                     <p><strong>Phone:</strong> ${customerPhone}</p>
                     <p><strong>Address:</strong> ${customerAddress}</p>
                 </div>`
         };
 
         await transporter.sendMail(mailOptions);
-        console.log("Email sent with customer details!");
-        res.json({ msg: "Admin ko notify kar diya gaya hai!" });
+        res.status(200).json({ msg: "Email Sent!" });
     } catch (err) {
-        console.error("Email Error:", err);
-        res.status(500).json({ msg: "Order notify fail ho gaya" });
+        console.error("Nodemailer Error:", err);
+        res.status(500).json({ msg: "Backend mein error hai", error: err.message });
     }
 });
 
