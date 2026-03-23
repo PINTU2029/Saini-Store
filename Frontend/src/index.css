@@ -389,6 +389,7 @@ input:focus {
     width: 35%; /* Desktop par width */
     transition: all 0.3s ease;
     border: 1px solid transparent;
+    height: 35px;
 }
 
 .search-form:focus-within {
