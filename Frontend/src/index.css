@@ -389,7 +389,7 @@ input:focus {
     width: 35%; /* Desktop par width */
     transition: all 0.3s ease;
     border: 1px solid transparent;
-    height: 40px;
+    height: 42px;
 }
 
 .search-form:focus-within {
@@ -412,6 +412,10 @@ input:focus {
     font-size: 14px !important;
     vertical-align: middle !important; 
     outline: none;
+}
+
+.search-form input::placeholder {
+  text-align: center;
 }
 
 .search-btn {
