@@ -15,36 +15,25 @@ const ProductCard = ({ product, refreshProducts }) => {
 
     // 1. ORDER NOTIFY FIX
 const handleOrderNotify = async () => {
-    const token = localStorage.getItem('token');
-    
-    if (!token) {
-        alert("Order karne ke liye please pehle Login karein!");
-        return;
-    }
-
+  
     try {
         
-        const userRaw = localStorage.getItem('user');
-        const userData = userRaw ? JSON.parse(userRaw) : {};
+        const userData = JSON.parse(localStorage.getItem('user')) || {};
 
-        
+        // API call tab simple thi
         await API.post('/order-notify', {
             productName: product.name,
             productPrice: product.price,
             customerName: userData.name || "N/A",
-            customerEmail: userData.email || "N/A",
-            customerAddress: userData.address || "No Address Provided",
-            customerPhone: userData.phone || "No Phone Provided"
-        }, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            customerPhone: userData.phone || "N/A",
+            customerAddress: userData.address || "N/A"
         });
 
         alert("✅ Order Details Admin ko bhej di gayi hain!");
+        console.log("Admin notified successfully like on March 21!");
     } catch (err) {
-        console.error("Order notification failed:", err.response?.data || err.message);
-        alert("Notification fail ho gayi! Ek baar dobara Login karke try karein.");
+        console.error("Order notification failed:", err);
+        alert("Notification fail ho gayi!");
     }
 };
 
