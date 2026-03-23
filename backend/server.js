@@ -25,11 +25,14 @@ mongoose.connect(process.env.MONGO_URI)
 // --- 3. Nodemailer Setup ---
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // true for 465, false for other ports
+    port: 587,            
+    secure: false,        
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS.replace(/\s+/g, '')
+    },
+    tls: {
+        rejectUnauthorized: false 
     }
 });
 
