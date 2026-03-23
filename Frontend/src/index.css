@@ -415,7 +415,7 @@ input:focus {
 }
 
 .search-form input::placeholder {
-  text-align: center;
+ line-height: 42px;
 }
 
 .search-btn {
