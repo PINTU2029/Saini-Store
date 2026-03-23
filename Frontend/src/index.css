@@ -404,10 +404,12 @@ input:focus {
     border: none !important;
     background: transparent !important;
     box-shadow: none !important;
-    padding: 8px 15px;
-    font-size: 15px;
-    width: 100%;
-    
+    height: 100% !important; /* Poori height lega container ki */
+    padding: 0 15px !important;
+    font-size: 14px !important;
+    display: flex;
+    align-items: center; /* Text ko center mein rakhega */
+    line-height: normal !important; /* Browser default height hata dega */
 }
 
 .search-btn {
