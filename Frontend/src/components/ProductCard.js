@@ -15,7 +15,6 @@ const ProductCard = ({ product, refreshProducts }) => {
 
     // 1. ORDER NOTIFY FIX
 const handleOrderNotify = async () => {
-    
     const token = localStorage.getItem('token');
     
     if (!token) {
@@ -24,37 +23,28 @@ const handleOrderNotify = async () => {
     }
 
     try {
+        
         const userRaw = localStorage.getItem('user');
-        if (!userRaw) {
-            alert("User data nahi mila, please dobara login karein.");
-            return;
-        }
-        const userData = JSON.parse(userRaw);
+        const userData = userRaw ? JSON.parse(userRaw) : {};
 
-        // 3. API Call with Headers
+        
         await API.post('/order-notify', {
             productName: product.name,
             productPrice: product.price,
             customerName: userData.name || "N/A",
             customerEmail: userData.email || "N/A",
-            customerAddress: userData.address || "Address not provided",
-            customerPhone: userData.phone || "Phone not provided"
+            customerAddress: userData.address || "No Address Provided",
+            customerPhone: userData.phone || "No Phone Provided"
         }, {
             headers: {
-                Authorization: `Bearer ${token}` // 👈 Token bhej rahe hain
+                Authorization: `Bearer ${token}`
             }
         });
 
         alert("✅ Order Details Admin ko bhej di gayi hain!");
     } catch (err) {
-        console.error("Error details:", err.response?.data || err.message);
-        
-        
-        if (err.response?.status === 401) {
-            alert("Session expire ho gaya hai, please dobara login karein.");
-        } else {
-            alert("Notification fail ho gayi! Connection check karein.");
-        }
+        console.error("Order notification failed:", err.response?.data || err.message);
+        alert("Notification fail ho gayi! Ek baar dobara Login karke try karein.");
     }
 };
 
