@@ -38,7 +38,7 @@ const authMiddleware = require('./middleware/authMiddleware');
 // --- 4. Routes ---
 
 // Order Notification Route
-app.post('/api/order-notify', authMiddleware, async (req, res) => {
+app.post('/api/order-notify',  async (req, res) => {
     try {
        
         const { productName, productPrice, customerName, customerAddress, customerPhone } = req.body;
