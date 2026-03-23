@@ -393,6 +393,7 @@ input:focus {
 }
 
 .search-form:focus-within {
+    dispaly:flex;
     background: #ffffff;
     border-color: #0071e3;
     box-shadow: 0 0 0 4px rgba(0,113,227,0.1);
@@ -404,8 +405,9 @@ input:focus {
     background: transparent !important;
     box-shadow: none !important;
     padding: 8px 15px;
-    font-size: 16px;
+    font-size: 15px;
     width: 100%;
+    
 }
 
 .search-btn {
