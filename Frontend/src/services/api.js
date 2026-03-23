@@ -7,7 +7,7 @@ const API = axios.create({
     }
 });
 
-//  YE HAI ASLI FIX: Har request se pehle token apne aap lag jayega
+// YE HAI ASLI FIX: Har request se pehle token apne aap lag jayega
 API.interceptors.request.use((req) => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -24,14 +24,18 @@ export const registerUser = async (userData) => {
 // 2. Login User
 export const loginUser = (userData) => API.post('/users/login', userData);
 
-// 3. Fetch All Products
-export const fetchProducts = () => API.get('/products');
+// 3. ✅ FETCH PRODUCTS (Search Support ke saath)
+// Ab ye parameter lega, agar khali hai toh saare products layega
+export const fetchProducts = (search = "") => {
+    return API.get(`/products?search=${search}`);
+};
 
 // 4. Order Notification
 export const sendOrderNotification = (orderData) => {
     return API.post('/order-notify', orderData);
 };
 
+// 5. Admin Actions
 export const deleteProduct = (id) => API.delete(`/products/${id}`);
 export const updateProduct = (id, productData) => API.put(`/products/${id}`, productData);
 
