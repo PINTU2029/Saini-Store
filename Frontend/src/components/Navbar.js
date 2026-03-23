@@ -38,7 +38,7 @@ const Navbar = () => {
                     aria-label="Search"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    style={{ borderRadius: '20px', paddingLeft: '15px' }}
+                    style={{ borderRadius: '20px', paddingLeft: '15px',height: '100%', paddingTop: '0',paddingBottom: '0', lineHeight: '38px', display: 'flex', alignItems: 'center' }}
                 />
                 <button className="btn btn-primary search-btn" type="submit">
                     Search
