@@ -7,7 +7,7 @@ const ProductCard = ({ product, refreshProducts }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editData, setEditData] = useState({ name: product.name, price: product.price });
 
-    const token = localStorage.getItem('token');
+    
     const userData = localStorage.getItem('user'); 
     const user = userData ? JSON.parse(userData) : null;
     
