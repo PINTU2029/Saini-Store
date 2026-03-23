@@ -379,3 +379,20 @@ input:focus {
 
 
 
+.search-form {
+    width: 40% !important; /* Desktop par width */
+}
+
+.search-btn {
+    border-radius: 20px !important;
+    font-weight: 700 !important;
+}
+
+@media screen and (max-width: 768px) {
+    .search-form {
+        width: 90% !important; /* Mobile par poori width */
+        margin: 10px 0 !important;
+    }
+}
+
+
