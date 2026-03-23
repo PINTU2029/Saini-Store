@@ -75,7 +75,7 @@ body {
 }
 
 /* --- ✅ 2. Mobile View Fix (Phones ke liye) --- */
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 400px) {
     .navbar {
         flex-direction: column !important; /* Logo upar, links neeche */
         padding: 15px 10px !important;
@@ -434,7 +434,7 @@ input:focus {
 }
 
 /* --- Mobile View Adjustments --- */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 380px) {
     .navbar {
         flex-direction: column !important;
         gap: 10px;
