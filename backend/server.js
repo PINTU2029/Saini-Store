@@ -24,18 +24,22 @@ mongoose.connect(process.env.MONGO_URI)
 
 // --- 3. Nodemailer Setup ---
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: 'gmail', 
+    port: 587,
+    secure: false, 
     auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS.replace(/\s+/g, '')
+        pass: process.env.EMAIL_PASS.replace(/\s+/g, '') 
+    },
+    tls: {
+        rejectUnauthorized: false 
     }
 });
-
-transporter.verify(function (error, success) {
+transporter.verify((error) => {
     if (error) {
-        console.log("Transporter error:", error);
+        console.log("Nodemailer setup error:", error.message);
     } else {
-        console.log("Server is ready to take our messages");
+        console.log("Server is ready to send emails! 🚀");
     }
 });
 
