@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom'; // 👈 URL track karne ke liye
 import { fetchProducts } from '../services/api';
 import ProductCard from '../components/ProductCard';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const location = useLocation(); // 🔍 Isse humein URL ki query milti hai
 
-    
     const getProducts = async () => {
         try {
-            const { data } = await fetchProducts();
+            setLoading(true);
+            // 1. URL se search query nikalna (e.g., ?search=phone)
+            const searchParams = new URLSearchParams(location.search);
+            const searchQuery = searchParams.get('search') || "";
+
+            // 2. API ko search query ke saath call karna
+            const { data } = await fetchProducts(searchQuery); 
+            
             setProducts(data);
             setLoading(false);
         } catch (err) {
@@ -18,10 +26,10 @@ const Home = () => {
         }
     };
 
-  
+    // ✅ Jab bhi location.search (URL ka query part) badlega, getProducts chalega
     useEffect(() => {
         getProducts();
-    }, []);
+    }, [location.search]); 
 
     if (loading) {
         return <div className="main-container"><h3>Loading Products...</h3></div>;
@@ -29,7 +37,8 @@ const Home = () => {
 
     return (
         <div className="main-container">
-            <h1>Our Products</h1>
+            {/* 🔍 Search result ke hisaab se heading badalna */}
+            <h1>{new URLSearchParams(location.search).get('search') ? "Search Results" : "Our Products"}</h1>
             
             <div className="product-grid">
                 {products.length > 0 ? (
@@ -42,8 +51,8 @@ const Home = () => {
                     ))
                 ) : (
                     <div style={{ gridColumn: '1 / -1', textAlign: 'center', marginTop: '50px' }}>
-                        <p style={{ color: '#888', fontSize: '18px' }}>Abhi koi product nahi hai.</p>
-                        <p style={{ color: '#0071e3' }}>Admin panel se naya product add karein!</p>
+                        <p style={{ color: '#888', fontSize: '18px' }}>Koi product nahi mila.</p>
+                        <p style={{ color: '#0071e3' }}>Kuch naya search karke dekhein!</p>
                     </div>
                 )}
             </div>
