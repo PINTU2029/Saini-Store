@@ -20,7 +20,7 @@ const handleOrderNotify = async () => {
         const userData = JSON.parse(localStorage.getItem('user')) || {};
 
       
-        await API.post('/order-notify', {
+        await API.post('/api/order-notify', {
             productName: product.name,
             productPrice: product.price,
             customerName: userData.name || "N/A",
