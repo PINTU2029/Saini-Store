@@ -7,12 +7,26 @@ const admin = require('../middleware/adminMiddleware');
 // 1. ZAROORI: Iske bina Home page par products nahi dikhenge
 router.get('/', async (req, res) => {
     try {
-        const products = await Product.find({});
+        const { search } = req.query; // URL se search parameter nikalna
+        let filter = {};
+
+        if (search) {
+            // Agar search query hai, toh Name ya Category mein dhoondo
+            filter = {
+                $or: [
+                    { name: { $regex: search, $options: 'i' } },      // 'i' means small/capital letter ka farq nahi
+                    { category: { $regex: search, $options: 'i' } }
+                ]
+            };
+        }
+
+        const products = await Product.find(filter);
         res.json(products);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
+
 
 // 2. Single product (Isse rehne do, koi nuksan nahi hai)
 router.get('/:id', async (req, res) => {
