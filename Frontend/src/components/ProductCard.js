@@ -15,12 +15,11 @@ const ProductCard = ({ product, refreshProducts }) => {
 
     // 1. ORDER NOTIFY FIX
 const handleOrderNotify = async () => {
-  
     try {
-        
+        // LocalStorage se user nikalna 
         const userData = JSON.parse(localStorage.getItem('user')) || {};
 
-        // API call tab simple thi
+      
         await API.post('/order-notify', {
             productName: product.name,
             productPrice: product.price,
@@ -30,7 +29,7 @@ const handleOrderNotify = async () => {
         });
 
         alert("✅ Order Details Admin ko bhej di gayi hain!");
-        console.log("Admin notified successfully like on March 21!");
+        console.log("21 March wala magic wapas aa gaya!");
     } catch (err) {
         console.error("Order notification failed:", err);
         alert("Notification fail ho gayi!");
