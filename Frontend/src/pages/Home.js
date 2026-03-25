@@ -8,7 +8,6 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
     const location = useLocation();
 
-    // useCallback use karne se Vercel dependency error nahi dega
     const getProducts = useCallback(async () => {
         try {
             setLoading(true);
