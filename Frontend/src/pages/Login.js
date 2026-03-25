@@ -17,10 +17,10 @@ const handleSubmit = async (e) => {
         // 2. User ID save 
         localStorage.setItem('userId', data.user._id || data.user.id);
 
-        // 3.  user object save karein (isAdmin )
+
         localStorage.setItem('user', JSON.stringify(data.user)); 
 
-        alert("✅ Login Successful!");
+        alert("Login Successful!");
         navigate('/'); 
         window.location.reload();
     } catch (err) {
