@@ -16,10 +16,8 @@ const ProductCard = ({ product, refreshProducts }) => {
     // 1. ORDER NOTIFY FIX
 const handleOrderNotify = async () => {
     try {
-        // LocalStorage se user nikalna 
+       
         const userData = JSON.parse(localStorage.getItem('user')) || {};
-
-      
         await API.post('/order-notify', {
             productName: product.name,
             productPrice: product.price,
@@ -28,7 +26,7 @@ const handleOrderNotify = async () => {
             customerAddress: userData.address || "N/A"
         });
 
-        alert("✅ Order Details Admin ko bhej di gayi hain!");
+        alert(" Order Details Admin ko bhej di gayi hain!");
         console.log("Notification Send kiya Gya!");
     } catch (err) {
         console.error("Order notification failed:", err);
@@ -42,7 +40,7 @@ const handleOrderNotify = async () => {
             try {
                 
                 await API.delete(`/products/${product._id}`);
-                alert("✅ Product delete ho gaya!");
+                alert(" Product delete ho gaya!");
                 refreshProducts(); 
             } catch (err) { 
                 console.error("Delete Error:", err.response?.data);
@@ -57,7 +55,7 @@ const handleOrderNotify = async () => {
         try {
             
             await API.put(`/products/${product._id}`, editData);
-            alert("✅ Product update ho gaya!");
+            alert(" Product update ho gaya!");
             setIsEditing(false);
             refreshProducts();
         } catch (err) { 
@@ -89,7 +87,7 @@ const handleOrderNotify = async () => {
                 <h3>{product.name}</h3>
                 <p>₹{product.price}</p>
                 
-                {/* Pay Now or Close Button (Visible to All) */}
+                {}
                 <button 
                     onClick={() => {
                         if(!showQR) handleOrderNotify(); 
