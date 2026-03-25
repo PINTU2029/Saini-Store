@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-    const [searchQuery, setSearchQuery] = useState(""); // 🔍 Search text ke liye state
+    const [searchQuery, setSearchQuery] = useState(""); 
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
 
@@ -13,13 +13,13 @@ const Navbar = () => {
         window.location.reload(); 
     };
 
-    // ✅ Search Submit function
+    
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchQuery.trim()) {
-            navigate(`/?search=${searchQuery}`); // URL badlega: /?search=mobile
+            navigate(`/?search=${searchQuery}`); 
         } else {
-            navigate('/'); // Agar khali hai toh home page
+            navigate('/'); 
         }
     };
 
@@ -29,7 +29,7 @@ const Navbar = () => {
                 Saini-<span>Store</span>
             </div>
 
-            {/* --- 🔍 Bootstrap Search Bar Start --- */}
+            {}
             <form className="d-flex mx-auto search-form" onSubmit={handleSearch}>
                 <input 
                     className="form-control me-2" 
@@ -44,7 +44,7 @@ const Navbar = () => {
                     Search
                 </button>
             </form>
-            {/* --- Search Bar End --- */}
+            {}
             
             <div className="nav-links">
                 <Link to="/" className="nav-link">Home</Link>
