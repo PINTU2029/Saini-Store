@@ -27,16 +27,15 @@ const Admin = () => {
         if (!product.image) return alert("Kripya ek photo select karein!");
 
         try {
-            // Price ko hamesha Number mein bhejo, backend string par error deta hai
+           
             const finalProduct = {
                 ...product,
                 price: Number(product.price)
             };
 
-            // ✅ Sirf 'API' call karo, token interceptor apne aap sambhaal lega
             await API.post('/products/add', finalProduct); 
             
-            alert("✅ Product Successfully Add ho gaya!");
+            alert(" Product Successfully Add ho gaya!");
             navigate('/');
         } catch (err) {
             console.error("Upload Error:", err.response?.data);
