@@ -74,30 +74,29 @@ body {
   border: none;
 }
 
-/* --- ✅ 2. Mobile View Fix (Phones ke liye) --- */
+/* ---  2. Mobile View Fix (Phones ke liye) --- */
 @media screen and (max-width: 400px) {
     .navbar {
-        flex-direction: column !important; /* Logo upar, links neeche */
+        flex-direction: column !important; 
         padding: 15px 10px !important;
         height: auto !important;
     }
 
     .nav-links {
         display: flex !important; 
-        flex-direction: row !important; /* Ek line mein links */
-        flex-wrap: wrap; /* Jagah kam ho toh doosri line mein jayein */
+        flex-direction: row !important; 
+        flex-wrap: wrap; 
         justify-content: center !important;
         gap: 10px !important;
         margin-top: 15px !important;
         width: 100% !important;
     }
 
-    /* Mobile par buttons ka size thoda chota */
     .nav-link, .admin-btn, .logout-btn {
         font-size: 12px !important;
         height: 30px !important;
         padding: 0 10px !important;
-        width: auto !important; /* Width fix mat rakho mobile par */
+        width: auto !important; 
     }
 }
 
@@ -278,8 +277,22 @@ input:focus {
   .card img { height: 150px; }
   .navbar { padding: 10px 4%; }
   .logo { font-size: 18px; }
-  .nav-link { display: none; } /* Mobile par home hide kiya space ke liye */
 }   
+
+/* for Mobile */
+@media (max-width: 650px) {
+  .nav-link { 
+    display: inline-block; 
+    font-size: 14px;       
+    padding: 5px 8px;      
+  }
+
+  .navbar {
+    padding: 10px 2%;     
+    flex-wrap: wrap;       
+    justify-content: space-around; 
+  }
+}
 
 
 /* footer */ 
@@ -290,7 +303,7 @@ input:focus {
     padding: 60px 10% 20px;
     margin-top: 50px;
     width: 100%;
-    border-top: 4px solid #0071e3; /* Top par patli blue line styling ke liye */
+    border-top: 4px solid #0071e3; 
 }
 
 .footer-content {
@@ -310,7 +323,7 @@ input:focus {
 }
 
 .footer-section h3 span {
-    color: #0071e3; /* Business word blue dikhega */
+    color: #0071e3; /* Business word blue */
 }
 
 .footer-section h4 {
@@ -346,7 +359,7 @@ input:focus {
 
 .footer-section ul li a:hover {
     color: #0071e3;
-    padding-left: 8px; /* Hover par halka sa move hoga */
+    padding-left: 8px; 
 }
 
 /* Footer Bottom Section */
@@ -372,7 +385,7 @@ input:focus {
     }
 
     .footer-section ul li a:hover {
-        padding-left: 0; /* Mobile par moving effect hata diya */
+        padding-left: 0;
     }
 }
 
@@ -383,7 +396,7 @@ input:focus {
 .search-form {
     display: flex;
     align-items: center;
-    background: #f5f5f7; /* Light grey background */
+    background: #f5f5f7; 
     border-radius: 50px; /* Capsule shape */
     padding: 2px 5px;
     width: 35%; /* Desktop par width */
@@ -441,12 +454,12 @@ input:focus {
     }
     
     .search-form {
-        width: 90% !important; /* Mobile par bada dikhe */
-        order: 2; /* Logo ke niche search bar */
+        width: 90% !important;
+        order: 2; 
     }
     
     .nav-links {
-        order: 3; /* Sabse niche links */
+        order: 3;
         width: 100%;
         justify-content: center;
     }
