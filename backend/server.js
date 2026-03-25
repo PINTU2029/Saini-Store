@@ -52,7 +52,7 @@ const authMiddleware = require('./middleware/authMiddleware');
 // Order Notification Route
 app.post('/api/order-notify', async (req, res) => {
     try {
-        // Frontend se jo bhi aa raha hai sab yahan pakad lo
+        
         const { productName, productPrice, customerName, customerAddress, customerPhone, customerEmail } = req.body;
 
         const mailOptions = {
