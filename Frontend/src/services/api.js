@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({ 
-    baseURL: 'https://saini-store.onrender.com/api'
+    baseURL: 'saini-store-production.up.railway.app'
 });
 
 API.interceptors.request.use((req) => {
