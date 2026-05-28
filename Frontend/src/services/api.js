@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({ 
-    baseURL: 'saini-store-production.up.railway.app'
+    baseURL: process.env.REACT_APP_API_URL || "https://saini-store-production.up.railway.app",
 });
 
 API.interceptors.request.use((req) => {
