@@ -1,8 +1,11 @@
 import axios from 'axios';
 
-const API = axios.create({ 
-    baseURL:'https://saini-store.vercel.app',
-});
+const cors = require('cors');
+
+app.use(cors({
+    origin: 'https://saini-store.vercel.app', 
+    credentials: true
+}));
 
 API.interceptors.request.use((req) => {
     const token = localStorage.getItem('token');
